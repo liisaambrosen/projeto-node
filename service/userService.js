@@ -1,4 +1,4 @@
-const model = require('../model/user_model');
+const model = require('../model/userModel');
 
 const validateNewUser = (email) => {
     //logica pra verificar se o email existe no arquivo

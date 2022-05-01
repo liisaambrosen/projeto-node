@@ -12,8 +12,8 @@ const validateSearch = (token, user_id) => {
     //logica para verificar o token
 };
 
-const createUser = (name, email, password, phoneNumbers) => {
-    // logica que chama o model.createUser
+const createUser = async (name, email, password, phoneNumbers) => {
+    await model.createUser(name, email, password, phoneNumbers);
 };
 
 const signIn = (email, password) => {

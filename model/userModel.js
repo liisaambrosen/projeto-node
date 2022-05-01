@@ -1,6 +1,16 @@
-const createUser = (name, email, password, phoneNumbers) => {
-    console.log(name, email, password, phoneNumbers);
-    // lógica de inserção do usuário no arquivo
+const { getUsers, setUsers } = require('../utils/fsUsers');
+
+const createUser = async (name, email, password, phoneNumbers) => {
+    const currentUsers = await getUsers();
+    console.log(currentUsers);
+    const newUser = {
+        "name": name,
+        "email": email,
+        "password": password,
+        "phoneNumbers": phoneNumbers
+    };
+    newUsers = [ ...currentUsers, newUser];
+    setUsers(newUsers);
 };
 
 const signIn = (email, password) => {

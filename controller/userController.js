@@ -4,10 +4,10 @@ const createUser = async (req, res) => {
 
     try {
         const { name, email, password, phoneNumbers } = req.body;
-        await service.createUser(name, email, password, phoneNumbers);
-        res.status(200).send(`${name}, ${email} criado com sucesso`);
+        const user = await service.createUser(name, email, password, phoneNumbers);
+        res.status(200).json(user);
     } catch (err) {
-        res.status(400).send({ "mensagem": err.message});
+        res.status(400).json({ "mensagem": err.message});
     }
 };
 

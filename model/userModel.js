@@ -16,6 +16,7 @@ const createUser = async (name, email, password, phoneNumbers, token) => {
     };
     newUsers = [ ...currentUsers, newUser];
     setUsers(newUsers);
+    return newUser;
 };
 
 const signIn = (email, password) => {

@@ -22,7 +22,8 @@ const validateSearch = (token, user_id) => {
 const createUser = async (name, email, password, phoneNumbers) => {
     const token = jwt.sign({email, password}, secret, jwtConfig);
 
-    await model.createUser(name, email, password, phoneNumbers, token);
+    const user = await model.createUser(name, email, password, phoneNumbers, token);
+    return user;
 };
 
 const signIn = (email, password) => {

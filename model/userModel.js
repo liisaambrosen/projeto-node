@@ -2,7 +2,6 @@ const { getUsers, setUsers } = require('../utils/fsUsers');
 
 const createUser = async (name, email, password, phoneNumbers, token) => {
     const currentUsers = await getUsers();
-    console.log(currentUsers);
     const newUser = {
         "id": currentUsers.length + 1,
         "token": token,
@@ -10,9 +9,9 @@ const createUser = async (name, email, password, phoneNumbers, token) => {
         "email": email,
         "password": password,
         "phoneNumbers": phoneNumbers,
-        "data_criacao": Date.now(),
-        "data_atualizacao": Date.now(),
-        "ultimo_login": Date.now()
+        "data_criacao": new Date(),
+        "data_atualizacao": new Date(),
+        "ultimo_login": new Date()
     };
     newUsers = [ ...currentUsers, newUser];
     setUsers(newUsers);

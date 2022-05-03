@@ -4,10 +4,15 @@ const createUser = async (name, email, password, phoneNumbers) => {
     const currentUsers = await getUsers();
     console.log(currentUsers);
     const newUser = {
+        "id": currentUsers.length + 1,
+        "token": "token",
         "name": name,
         "email": email,
         "password": password,
-        "phoneNumbers": phoneNumbers
+        "phoneNumbers": phoneNumbers,
+        "data_criacao": Date.now(),
+        "data_atualizacao": Date.now(),
+        "ultimo_login": Date.now()
     };
     newUsers = [ ...currentUsers, newUser];
     setUsers(newUsers);

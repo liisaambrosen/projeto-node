@@ -1,4 +1,11 @@
 const model = require('../model/userModel');
+const jwt = require('jsonwebtoken');
+
+const secret = 'segredosecreto';
+const jwtConfig = {
+    expiresIn: '365d',
+    algorithm: 'HS256'
+};
 
 const validateNewUser = (email) => {
     //logica pra verificar se o email existe no arquivo
@@ -13,7 +20,9 @@ const validateSearch = (token, user_id) => {
 };
 
 const createUser = async (name, email, password, phoneNumbers) => {
-    await model.createUser(name, email, password, phoneNumbers);
+    const token = jwt.sign({email, password}, secret, jwtConfig);
+
+    await model.createUser(name, email, password, phoneNumbers, token);
 };
 
 const signIn = (email, password) => {

@@ -1,11 +1,11 @@
 const { getUsers, setUsers } = require('../utils/fsUsers');
 
-const createUser = async (name, email, password, phoneNumbers) => {
+const createUser = async (name, email, password, phoneNumbers, token) => {
     const currentUsers = await getUsers();
     console.log(currentUsers);
     const newUser = {
         "id": currentUsers.length + 1,
-        "token": "token",
+        "token": token,
         "name": name,
         "email": email,
         "password": password,

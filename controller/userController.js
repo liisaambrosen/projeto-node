@@ -1,9 +1,9 @@
 const service = require('../service/userService');
 
 const createUser = async (req, res) => {
-    const { name, email, password, phoneNumbers } = req.body;
+    const { nome, email, senha, telefones } = req.body;
     try {
-        const newUser = await service.createUser(name, email, password, phoneNumbers);
+        const newUser = await service.createUser(nome, email, senha, telefones);
         res.status(200).json(newUser);
     } catch (err) {
         res.status(400).json({ "mensagem": err.message});
@@ -11,9 +11,9 @@ const createUser = async (req, res) => {
 };
 
 const signIn = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, senha } = req.body;
     try {
-        const logIn = await service.signIn(email, password);
+        const logIn = await service.signIn(email, senha);
         res.status(200).json(logIn);
     } catch (err) {
         res.status(401).json({ "mensagem": err.message });

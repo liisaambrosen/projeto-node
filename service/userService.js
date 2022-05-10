@@ -18,8 +18,8 @@ const createUser = async (name, email, password, phoneNumbers) => {
     return newUser;
 };
 
-const signIn = async (email, password) => {
-    const user = await model.signIn(email, password);
+const signIn = async (email, senha) => {
+    const user = await model.signIn(email, senha);
     return user;
 };
 

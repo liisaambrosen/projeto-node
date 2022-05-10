@@ -18,9 +18,9 @@ const createUser = async (name, email, password, phoneNumbers, token) => {
     return newUser;
 };
 
-const signIn = async (email, password) => {
+const signIn = async (email, senha) => {
     const currentUsers = await getUsers();
-    const userLogin = currentUsers.find((user) => user.email === email && user.password === password);
+    const userLogin = currentUsers.find((user) => user.email === email && user.senha === senha);
     return userLogin;
 };
 

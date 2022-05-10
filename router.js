@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('./controller/userController');
-// const validateEmail = require('./middlewares/validate');
 
-router.post('/sign_up', userController.createUser);
+const validateEmail = require('./middlewares/validateNewUser');
+const validateLogin = require('./middlewares/validateLogin');
 
-router.post('/sign_in', userController.signIn);
+router.post('/sign_up', validateEmail, userController.createUser);
+
+router.post('/sign_in', validateLogin, userController.signIn);
 
 router.get('/search', userController.searchUser);
 

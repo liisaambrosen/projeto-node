@@ -18,9 +18,10 @@ const createUser = async (name, email, password, phoneNumbers, token) => {
     return newUser;
 };
 
-const signIn = (email, password) => {
-    console.log(email, password);
-    // logica de login
+const signIn = async (email, password) => {
+    const currentUsers = await getUsers();
+    const userLogin = currentUsers.find((user) => user.email === email && user.password === password);
+    return userLogin;
 };
 
 const searchUser = (token) => {

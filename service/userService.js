@@ -8,36 +8,24 @@ const jwtConfig = {
     algorithm: 'HS256'
 };
 
-const validateNewUser = async (email) => {
-    const currentUsers = await getUsers();
-    const invalidEmail = currentUsers.find((user) => user.email === email);
-    if (invalidEmail) return 'Email já cadastrado';
-    return undefined;
-}
-
-const validateLogin = (email, password) => {
-    //logica para verificar o usuario e senha passados
-};
-
 const validateSearch = (token, user_id) => {
     //logica para verificar o token
 };
 
 const createUser = async (name, email, password, phoneNumbers) => {
-    const invalid = await validateNewUser(email);
-    if (invalid) throw new Error(invalid);
     const token = jwt.sign({email, password}, secret, jwtConfig);
     const newUser = await model.createUser(name, email, password, phoneNumbers, token);
     return newUser;
 };
 
-const signIn = (email, password) => {
-    // logica que chama o model.signIn
-}
+const signIn = async (email, password) => {
+    const user = await model.signIn(email, password);
+    return user;
+};
 
 const searchUser = (token) => {
     // logica que chama o model.searchUser
-}
+};
 
 module.exports = {
     createUser,

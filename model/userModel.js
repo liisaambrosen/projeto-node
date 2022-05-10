@@ -21,11 +21,12 @@ const createUser = async (name, email, password, phoneNumbers, token) => {
 const signIn = async (email, senha) => {
     const currentUsers = await getUsers();
     const userLogin = currentUsers.find((user) => user.email === email && user.senha === senha);
+    currentUsers[userLogin.id - 1].ultimo_login = new Date();
+    setUsers(currentUsers);
     return userLogin;
 };
 
 const searchUser = (token) => {
-    console.log(token);
     // lógica de busca do usuário no arquivo
 };
 

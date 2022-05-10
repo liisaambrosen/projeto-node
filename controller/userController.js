@@ -20,8 +20,8 @@ const signIn = async (req, res) => {
     }
 };
 
-const searchUser = (req, res) => {
-    //codigo que chama o service.searchUser
+const searchUser = async (req, res) => {
+    console.log('oi');
 };
 
 module.exports = {

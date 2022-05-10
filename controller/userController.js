@@ -10,8 +10,15 @@ const createUser = async (req, res) => {
     }
 };
 
-const signIn = (req, res) => {
+const signIn = async (req, res) => {
     // codigo que chama o service.signIn
+    const { email, password } = req.body;
+    try {
+        const logIn = await service.signIn(email, password);
+        res.status(200).json(logIn);
+    } catch (err) {
+        res.status(401).json({ "mensagem": err.message });
+    }
 };
 
 const searchUser = (req, res) => {

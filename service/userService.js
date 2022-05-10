@@ -8,8 +8,10 @@ const jwtConfig = {
 };
 
 const validateNewUser = (email) => {
-    //logica pra verificar se o email existe no arquivo
-};
+    const currentUsers = await getUsers();
+    const invalidEmail = currentUsers.find((user) => user.email === email);
+    if (invalidEmail) return 'Email já cadastrado';
+}
 
 const validateLogin = (email, password) => {
     //logica para verificar o usuario e senha passados

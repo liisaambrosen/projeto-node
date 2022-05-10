@@ -1,7 +1,9 @@
-const { getUsers } = require('../utils/fsUsers');
+const { getUsers, setUsers } = require('../utils/fsUsers');
 
-const validateEmail = async (res, req, next) => {
-    console.log('blalbalbalalalala', req);
+const validateEmail = async (_res, req, next) => {
+    // const users = await getUsers();
+    // const newUsers = [...users, { req }];
+    // setUsers(newUsers);
     const { email } = req.body;
     const currentUsers = await getUsers();
     const invalidEmail = currentUsers.find((user) => user.email === email);

@@ -26,8 +26,10 @@ const signIn = async (email, senha) => {
     return userLogin;
 };
 
-const searchUser = (token) => {
-    // lógica de busca do usuário no arquivo
+const searchUser = (id) => {
+    const currentUsers = await getUsers();
+    const userById = currentUsers.find((user) => user.id === id);
+    return userById;
 };
 
 module.exports = {

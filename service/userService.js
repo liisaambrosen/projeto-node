@@ -1,15 +1,10 @@
 const model = require('../model/userModel');
-const { getUsers } = require('../utils/fsUsers');
 const jwt = require('jsonwebtoken');
 
 const secret = 'segredosecreto';
 const jwtConfig = {
     expiresIn: '365d',
     algorithm: 'HS256'
-};
-
-const validateSearch = (token, user_id) => {
-    //logica para verificar o token
 };
 
 const createUser = async (name, email, password, phoneNumbers) => {

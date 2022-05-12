@@ -21,7 +21,7 @@ const signIn = async (req, res) => {
 };
 
 const searchUser = async (req, res) => {
-    console.log('oi');
+    const { id } = req.params;
 };
 
 module.exports = {

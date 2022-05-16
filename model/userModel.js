@@ -1,4 +1,16 @@
-const { getUsers, setUsers } = require('../utils/fsUsers');
+const fs = require('fs').promises;
+const path = require('path');
+
+const USERS_PATH = path.join(__dirname, '..', '/', 'db_users.json');
+
+const getUsers = async () => {
+    const result = await fs.readFile(USERS_PATH, 'utf-8');
+    return JSON.parse(result);
+};
+
+const setUsers = async (updatedUsers) => {
+    await fs.writeFile(USERS_PATH, JSON.stringify(updatedUsers));
+};
 
 const createUser = async (name, email, password, phoneNumbers, token) => {
     const currentUsers = await getUsers();
@@ -14,7 +26,7 @@ const createUser = async (name, email, password, phoneNumbers, token) => {
         "ultimo_login": new Date()
     };
     newUsers = [ ...currentUsers, newUser];
-    setUsers(newUsers);
+    await setUsers(newUsers);
     return newUser;
 };
 
@@ -26,13 +38,15 @@ const signIn = async (email, senha) => {
     return userLogin;
 };
 
-const searchUser = (id) => {
+const searchUser = async (id) => {
     const currentUsers = await getUsers();
     const userById = currentUsers.find((user) => user.id === id);
     return userById;
 };
 
 module.exports = {
+    getUsers,
+    setUsers,
     createUser,
     signIn,
     searchUser,

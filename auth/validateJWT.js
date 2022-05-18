@@ -16,7 +16,7 @@ const validate = async (req, res, next) => {
         return res.status(401).json({ mensagem: 'Não autorizado' });    
     }
 
-    next(token);
+    next();
 };
 
 module.exports = validate;

@@ -22,6 +22,12 @@ const signIn = async (req, res) => {
 
 const searchUser = async (req, res) => {
     const { id } = req.params;
+    try {
+        const user = await service.searchUser(id);
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(400).json({ "mensagem": err.message });
+    }
 };
 
 module.exports = {

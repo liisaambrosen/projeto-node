@@ -40,7 +40,7 @@ const signIn = async (email, senha) => {
 
 const searchUser = async (id) => {
     const currentUsers = await getUsers();
-    const userById = currentUsers.find((user) => user.id === id);
+    const userById = currentUsers.find((user) => user.id === JSON.parse(id));
     return userById;
 };
 

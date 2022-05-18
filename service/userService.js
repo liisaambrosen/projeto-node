@@ -1,5 +1,6 @@
 const model = require('../model/userModel');
 const jwt = require('jsonwebtoken');
+const moment = require('moment');
 
 const secret = 'segredosecreto';
 const jwtConfig = {
@@ -18,8 +19,13 @@ const signIn = async (email, senha) => {
     return user;
 };
 
-const searchUser = (token) => {
-    // logica que chama o model.searchUser
+const searchUser = async (id) => {
+    const user = await model.searchUser(id);
+    const currentMinusThirty = moment().subtract(30, 'minutes').toDate().getTime();
+    const lastLogin = new Date(user.ultimo_login);
+    const parseLogin = moment(lastLogin);
+    if (parseLogin < currentMinusThirty) throw new Error('Sessão inválida');
+    return user;
 };
 
 module.exports = {

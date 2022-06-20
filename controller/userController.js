@@ -28,17 +28,7 @@ const createUser = async (req, res) => {
 const signIn = async (req, res) => {
     const { email, senha } = req.body;
     try {
-        const { error } = Joi.object({
-            email: Joi.string().not().empty().required(),
-            senha: Joi.string().not().empty().required(),
-        }).validate({ email, senha });
-
-        if (error) {
-            res.status(400).json({ "mensagem": "Dados inválidos" });
-        }
-
         const logIn = await service.signIn(email, senha);
-        
         res.status(200).json(logIn);
     } catch (err) {
         res.status(401).json({ "mensagem": err.message });
@@ -48,16 +38,7 @@ const signIn = async (req, res) => {
 const searchUser = async (req, res) => {
     const { id } = req.params;
     try {
-        const { error } = Joi.object({
-            id: Joi.string().not().empty().required(),
-        }).validate({ id });
-
-        if (error) {
-            res.status(400).json({ "mensagem": "Dados inválidos" });
-        }
-
         const user = await service.searchUser(id);
-
         res.status(200).json(user);
     } catch (err) {
         res.status(400).json({ "mensagem": err.message });

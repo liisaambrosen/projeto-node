@@ -8,14 +8,14 @@ const createUser = async (req, res) => {
             nome: Joi.string().not().empty().required(),
             email: Joi.string().not().empty().required(),
             senha: Joi.string().not().empty().required(),
-            telefones: Joi.object({
+            telefones: Joi.array().items(Joi.object().keys({
                 numero: Joi.string().not().empty().required(),
-                ddd: Joi.string().not().empty().required,
-            }).required()
+                ddd: Joi.string().not().empty().required(),    
+            })).required()
         }).validate({ nome, email, senha, telefones });
 
         if (error) {
-            res.status(400).json({ mensagem: "Dados inválidos"});
+            throw new Error("Dados inválidos");
         }
 
         const newUser = await service.createUser(nome, email, senha, telefones);
